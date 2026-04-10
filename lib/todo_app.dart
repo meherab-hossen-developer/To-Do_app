@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_application/other%20classes/add_new_todo_screen.dart';
+
+import 'other classes/todo_variable.dart';
 
 class TodoApp extends StatefulWidget {
   const TodoApp({super.key});
@@ -41,36 +44,23 @@ class _TodoAppState extends State<TodoApp> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Todo todo = Todo(
-            id: 1,
-            title: 'Dummy title',
-            description: 'Description',
-            status: 'Pending',
-            createDate: DateTime.now(),
-          );
-          todoList.add(todo);
-          setState(() {
-
-          });
+          // Todo todo = Todo(
+          //   id: 1,
+          //   title: 'Dummy title',
+          //   description: 'Description',
+          //   status: 'Pending',
+          //   createDate: DateTime.now(),
+          // );
+          // todoList.add(todo);
+          // setState(() {
+          //
+          // });
+          Navigator.push(context, MaterialPageRoute(builder: (context){
+            return AddNewTodoScreen();
+          }));
         },
         child: Icon(Icons.add),
       ),
     );
   }
-}
-
-class Todo {
-  final int id;
-  final String title;
-  final String description;
-  final String status;
-  final DateTime createDate;
-
-  Todo({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.status,
-    required this.createDate,
-  });
 }
