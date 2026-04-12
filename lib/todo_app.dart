@@ -27,6 +27,10 @@ class _TodoAppState extends State<TodoApp> {
           Todo todo = todoList[index];
 
           return ListTile(
+            onLongPress: (){
+              todoList.removeAt(index);
+              setState(() {});
+            },
             title: Text(
               todo.title,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -43,21 +47,21 @@ class _TodoAppState extends State<TodoApp> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Todo todo = Todo(
-          //   id: 1,
-          //   title: 'Dummy title',
-          //   description: 'Description',
-          //   status: 'Pending',
-          //   createDate: DateTime.now(),
-          // );
-          // todoList.add(todo);
-          // setState(() {
-          //
-          // });
-          Navigator.push(context, MaterialPageRoute(builder: (context){
-            return AddNewTodoScreen();
-          }));
+        onPressed: () async {
+          Todo? todo = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return AddNewTodoScreen();
+              },
+            ),
+          );
+          if(todo != null){
+            todoList.add(todo);
+            setState(() {
+
+            });
+          }
         },
         child: Icon(Icons.add),
       ),
